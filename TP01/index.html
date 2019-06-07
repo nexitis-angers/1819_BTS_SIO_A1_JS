@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>TP01 - Introduction</title>
+    </head>
+    <body>
+        <h1>Bienvenue sur mon site</h1>
+        <button onclick="changeTitleColor();">Changer la couleur des titres</button>
+        
+        <input 
+            id="playerName"
+            type="text" 
+            placeholder="Qui es-tu ?" onkeyup="toggleGameVisibility();" />
+
+        <div id="game" style="display:none;">
+        <button id="playButton" onclick="play();">Jouer</button>
+        
+            <ul id="result"></ul>
+
+    </div>
+
+
+        <script type="text/javascript">
+        /*
+            let nom = prompt('Bonjour, qui es-tu ?');
+            let prenom;
+
+            if(nom !== undefined && nom !== null && nom !== ''){
+            // Vérification que le nom a bien été saisi par l'utilisateur
+            alert('Bonjour ' + nom);
+        }else {
+            alert('Veuillez saisir un nom');
+        }
+        */
+
+        /* Change la couleur des titres H1 */
+        var changeTitleColor = function(){
+            let titleElements = document.getElementsByTagName('h1');
+            for(let i = 0; i<titleElements.length;i++){
+                titleElements[i].style.color = 'red';
+            }            
+        }
+
+        var tryCounter = 0;
+        
+        var toggleGameVisibility = function()
+         {
+             let playerName = document.getElementById('playerName').value;
+             let gameElement = document.getElementById('game');   
+             if(playerName !== undefined && playerName !== null && playerName !== '')             {
+                gameElement.style.display = 'block';
+             }
+             else {
+                gameElement.style.display = 'none';
+             }
+         }
+
+         var play = function()
+         {
+             let number = Math.floor(Math.random() * 100) + 1;
+             document.getElementById('playButton').disabled = true;
+             document.getElementById('playerName').value = '';
+             let found = false;
+             
+             do{
+                let userValue = Number(prompt('Indique un nombre compris entre 1 et 100 inclus'));
+                tryCounter+=1;
+
+                let resultElement = document.createElement('li');
+                if(userValue < number){
+                    resultElement.innerHTML = 'Le nombre recherché est supérieur à ' + userValue;
+                }else if(userValue > number){
+                    resultElement.innerHTML = 'Le nombre recherché est inférieur à ' + userValue;
+                } 
+                else{
+                    resultElement.innerHTML = 'Tu as trouvé : ' + number + ' en ' + tryCounter + ' coups!';
+                    found = true;
+                }
+
+                document.getElementById('result').appendChild(resultElement);
+
+             }while(!found)
+         }
+
+        function maSecondeFonction() {
+
+        }
+
+        </script>
+    </body>
+</html>

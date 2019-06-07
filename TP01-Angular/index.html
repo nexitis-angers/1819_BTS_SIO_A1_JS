@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>Plus ou moins AngularJS</title>
+        <script src="src/js/lib/angular.min.js" type="text/javascript"></script>
+        <script src="src/js/app.module.js" type="text/javascript"></script>
+    </head>
+    <!-- au niveau du body, on instancie notre application -->
+    <body ng-app="plusoumoins">
+        <!-- Instanciation du controller -->
+        <div ng-controller="gameCtrl">
+            <!-- Tout ce qui est dans cette div,
+                 sera accessible au niveau du $scope 
+            -->
+
+            <!--
+            <button ng-click="askUsername();">Qui es-tu ?</button>
+             <button ng-click="privateFunction();">Plop</button>   
+            -->
+
+            <!-- La directive ng-model permet de binder (lier) 
+                la saisie de l'utilisateur à une variable qui est
+                associée au scope
+            -->
+            <input type="text" ng-model="username" />
+
+            <!-- La directive ng-if permet d'écire ou non la balise
+            H2 dans le DOM selon une expression booléenne
+             -->
+            <h2 ng-if="username !== undefined 
+                && username !== null 
+                && username !==''">
+                Bonjour {{username}}</h2>
+
+            <button ng-disabled="username === undefined 
+                || username === null 
+                || username === ''" ng-click="play();">
+                Jouer</button>
+
+            <div ng-if="username !== undefined 
+            && username !== null 
+            && username !== ''">
+                <input type="number" ng-model="inputValue" />
+                <button ng-click="submitValue(inputValue);">Tester</button>
+            
+                <h3>Nombre de coups : {{try.length}}</h3>
+                <ul>
+                    <li ng-repeat="item in try">{{item}}</li>
+                </ul>
+            </div>
+            
+        </div>
+    </body>    
+</html>
